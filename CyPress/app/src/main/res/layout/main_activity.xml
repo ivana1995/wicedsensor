@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+******************************************************************************
+ *
+ *  Copyright (C) 2017 Cypress
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ ******************************************************************************
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bkg"
+    android:baselineAligned="false"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/left_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_left_side_1">
+
+            <fragment
+                android:id="@+id/fragment_gyro"
+                android:name="com.ivana.app.wicedsense.GyroFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:tag="fragment_gyro"
+                tools:layout="@layout/gyro_fragment" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="20dp"
+            android:background="@drawable/bg_left_side_3">
+
+            <!-- novi fragment, vezan za accelerometer koji se proracunava iz x i y koridnata  -->
+            <fragment
+                android:id="@+id/fragment_accelerometer2"
+                android:name="com.ivana.app.wicedsense.Accelerometer2Fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:tag="fragment_accelerometer2"
+                tools:layout="@layout/accelerometer2_fragment" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/cypress_logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="5dp"
+            android:scaleType="fitEnd"
+            android:src="@drawable/cypress_logo_2" />
+
+        <Button
+            android:id="@+id/connection_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="60dp"
+            android:text="@string/no_device" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/connection_state"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_left_side_2">
+                <!-- pomereno iz donjeg desnog ugla, tj kopirano iz sredine fajla ovde -->
+                <fragment
+                    android:id="@+id/fragment_accelerometer"
+                    android:name="com.ivana.app.wicedsense.AccelerometerFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:tag="fragment_accelerometer"
+                    tools:layout="@layout/accelerometer_fragment" />
+
+            </FrameLayout>
+
+             <!-- ovo je setovano na GONE, da ne bi bilo vidljivo na ekranu, po potrebi moze da se setuje na VISIBLE ako proradi kompas -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:background="@drawable/bg_left_side_2">
+
+                <fragment
+                    android:id="@+id/fragment_compass"
+                    android:name="com.ivana.app.wicedsense.CompassFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:tag="fragment_compass"
+                    tools:layout="@layout/compass_fragment" />
+
+            </FrameLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>
